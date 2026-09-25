@@ -1,0 +1,10 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_logicflows",
+    "FlowNameId": "91a27721-b64d-477a-8610-40aade1d3532",
+    "Name": "IntSessionPatch",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo",
+    "WorkflowEntityId": "cefca3b3-d199-f111-b8db-6045bd0838d0"
+  }
+]

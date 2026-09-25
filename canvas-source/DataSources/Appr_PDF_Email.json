@@ -1,0 +1,10 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_logicflows",
+    "FlowNameId": "68ab0ad0-46ba-452b-8443-51c8ccae195c",
+    "Name": "Appr_PDF_Email",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo",
+    "WorkflowEntityId": "a716cf7d-23a1-f111-b8dc-6045bd0838d0"
+  }
+]

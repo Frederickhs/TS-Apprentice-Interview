@@ -1,0 +1,201 @@
+{
+  "2937851b-cfc4-4668-b57e-fc6d6bda2fad": {
+    "appActions": [],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "OneDrive for Business",
+      "iconUri": "https://static.powerapps.com/resource/ppcr/releases/v1.0.1827/1.0.1827.4902/onedriveforbusiness/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_onedriveforbusiness",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "c8fd9800-3e9f-46a0-8787-0c8d9919ba6c"
+    ],
+    "id": "2937851b-cfc4-4668-b57e-fc6d6bda2fad"
+  },
+  "698f5eef-d70c-476b-a689-335d48f79b6f": {
+    "appActions": [
+      "SearchUser",
+      "MyProfile"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Users",
+      "iconUri": "https://static.powerapps.com/resource/ppcr/releases/v1.0.1818/1.0.1818.4788/office365users/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365users",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "698f5eef-d70c-476b-a689-335d48f79b6f"
+  },
+  "bdc83a57-e25f-481d-9416-574ba4367a40": {
+    "appActions": [],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Outlook",
+      "iconUri": "https://static.powerapps.com/resource/ppcr/releases/v1.0.1819/1.0.1819.4795/office365/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "c8fd9800-3e9f-46a0-8787-0c8d9919ba6c"
+    ],
+    "id": "bdc83a57-e25f-481d-9416-574ba4367a40"
+  },
+  "c8fd9800-3e9f-46a0-8787-0c8d9919ba6c": {
+    "appActions": [
+      "Run"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://static.powerapps.com/resource/ppcr/releases/v1.0.1827/1.0.1827.4908/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "2937851b-cfc4-4668-b57e-fc6d6bda2fad": {
+          "value": "shared_onedriveforbusiness"
+        },
+        "bdc83a57-e25f-481d-9416-574ba4367a40": {
+          "value": "shared_office365_1"
+        },
+        "workflowDisplayName": {
+          "value": "Appr_PDF_Email"
+        },
+        "workflowEntityId": {
+          "value": "a716cf7d-23a1-f111-b8dc-6045bd0838d0"
+        },
+        "workflowName": {
+          "value": "6813cde3-f175-8f79-ee74-8a73debcbc26"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_office365_1": {
+          "value": "bdc83a57-e25f-481d-9416-574ba4367a40"
+        },
+        "shared_onedriveforbusiness": {
+          "value": "2937851b-cfc4-4668-b57e-fc6d6bda2fad"
+        },
+        "workflowDisplayName": {
+          "value": "Appr_PDF_Email"
+        },
+        "workflowEntityId": {
+          "value": "a716cf7d-23a1-f111-b8dc-6045bd0838d0"
+        },
+        "workflowName": {
+          "value": "6813cde3-f175-8f79-ee74-8a73debcbc26"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "Appr_PDF_Email"
+    ],
+    "dependencies": {
+      "shared_office365_1": "bdc83a57-e25f-481d-9416-574ba4367a40",
+      "shared_onedriveforbusiness": "2937851b-cfc4-4668-b57e-fc6d6bda2fad"
+    },
+    "dependents": [],
+    "id": "c8fd9800-3e9f-46a0-8787-0c8d9919ba6c"
+  },
+  "d253a505-617e-4300-970d-783dd9ae415d": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://static.powerapps.com/resource/ppcr/releases/v1.0.1827/1.0.1827.4913/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://uniparks.sharepoint.com/sites/Apprentice_Interview": {
+        "dataSources": {
+          "AP_INT": {
+            "tableName": "43ab0dea-55b1-43ac-a83a-82a6a806733e"
+          },
+          "ApprWI_Questions": {
+            "tableName": "c6222b40-4305-41f6-9d61-4d753d0bd3df"
+          },
+          "Int_Data": {
+            "tableName": "82fd87f4-7090-47fc-a73e-cf83d0fd52d2"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "AP_INT",
+      "Int_Data",
+      "ApprWI_Questions"
+    ],
+    "dependencies": {},
+    "dependents": [
+      "e563ec63-6146-41d3-bf0b-ddf9d88b40dc"
+    ],
+    "id": "d253a505-617e-4300-970d-783dd9ae415d"
+  },
+  "e563ec63-6146-41d3-bf0b-ddf9d88b40dc": {
+    "appActions": [
+      "Run"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://static.powerapps.com/resource/ppcr/releases/v1.0.1827/1.0.1827.4908/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "d253a505-617e-4300-970d-783dd9ae415d": {
+          "value": "shared_sharepointonline"
+        },
+        "workflowDisplayName": {
+          "value": "IntSessionPatch"
+        },
+        "workflowEntityId": {
+          "value": "cefca3b3-d199-f111-b8db-6045bd0838d0"
+        },
+        "workflowName": {
+          "value": "afcc76f8-98d5-fae6-5d07-07635e110155"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_sharepointonline": {
+          "value": "d253a505-617e-4300-970d-783dd9ae415d"
+        },
+        "workflowDisplayName": {
+          "value": "IntSessionPatch"
+        },
+        "workflowEntityId": {
+          "value": "cefca3b3-d199-f111-b8db-6045bd0838d0"
+        },
+        "workflowName": {
+          "value": "afcc76f8-98d5-fae6-5d07-07635e110155"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "IntSessionPatch"
+    ],
+    "dependencies": {
+      "shared_sharepointonline": "d253a505-617e-4300-970d-783dd9ae415d"
+    },
+    "dependents": [],
+    "id": "e563ec63-6146-41d3-bf0b-ddf9d88b40dc"
+  }
+}

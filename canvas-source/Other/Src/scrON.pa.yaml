@@ -1,0 +1,1286 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  scrON:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+      OnVisible: =Clear(colQGrade);Set(varSelectedTopic, "General");Select(btnRefreshInt); Set(varBonusCat,Blank()); Set(varBonusA, 0); Set(varBonusB,0);Set(varBonusUsed, false)
+    Children:
+      - Rectangle3:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledFill: =RGBA(161, 159, 157, 1)
+            Fill: =RGBA(236, 236, 235, 1)
+            FocusedBorderThickness: =4
+            Height: =126
+            HoverFill: =RGBA(236, 236, 235, 1)
+            PressedFill: =RGBA(236, 236, 235, 1)
+            Width: =423
+            X: =943
+            Y: =47
+      - imgBannerBoard:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =47
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Image: ='Universal Background'
+            ImagePosition: =ImagePosition.Fill
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Width: =1366
+      - galQuestions:
+          Control: Gallery@2.15.0
+          Variant: BrowseLayout_Vertical_TwoTextVariant_ver5.0
+          Properties:
+            BorderColor: =RGBA(245, 245, 245, 1)
+            BorderThickness: =1
+            Height: =488
+            Items: |+
+              =Filter(colInterviewQuestions, Cat = varSelectedTopic)
+            TemplateSize: =314
+            Width: =1366
+            Y: =173
+          Children:
+            - btnIncorrect:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  DisabledFill: =RGBA(242, 242, 241, 0)
+                  Fill: |+
+                    =If( LookUp(colQGrade, QuestionID = ThisItem.ID).IsCorrect = "Incorrect",ColorValue("#D13438"),ColorValue("#EDEDED"))
+                  Font: =Font.'Segoe UI'
+                  HoverBorderColor: =RGBA(0, 0, 0, 0)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =RGBA(16, 110, 190, 1)
+                  OnSelect: |
+                    =RemoveIf(
+                        colQGrade,
+                        QuestionID = ThisItem.ID
+                    );
+                    Collect(
+                        colQGrade,
+                        {
+                            QuestionID: ThisItem.ID,
+                            Question: ThisItem.Question,
+                            QNumber: ThisItem.Title,
+                            IsCorrect: "Incorrect"
+                        }
+                    );
+                  PressedBorderColor: =RGBA(0, 69, 120, 1)
+                  PressedColor: =RGBA(255, 255, 255, 1)
+                  PressedFill: =RGBA(16, 110, 190, 1)
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Text: ="Incorrect"
+                  X: =1115
+                  Y: =13
+            - btnCorrect:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  DisabledFill: =RGBA(242, 242, 241, 0)
+                  Fill: =If(LookUp(colQGrade,QuestionID=ThisItem.ID).IsCorrect="Correct",ColorValue("#107C10"),ColorValue("#EDEDED"))
+                  Font: =Font.'Segoe UI'
+                  HoverBorderColor: =RGBA(0, 0, 0, 0)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =RGBA(16, 110, 190, 1)
+                  OnSelect: |
+                    =RemoveIf(
+                        colQGrade,
+                        QuestionID = ThisItem.ID
+                    );
+                    Collect(
+                        colQGrade,
+                        {
+                            QuestionID: ThisItem.ID,
+                            Question: ThisItem.Question,
+                            QNumber: ThisItem.Title,
+                            IsCorrect: "Correct"
+                        }
+                    );
+                  PressedBorderColor: =RGBA(0, 69, 120, 1)
+                  PressedColor: =RGBA(255, 255, 255, 1)
+                  PressedFill: =RGBA(16, 110, 190, 1)
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Text: |-
+                    ="Correct
+                    "
+                  X: =937
+                  Y: =13
+            - txtanswer:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(96, 94, 92, 1)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =196
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =12
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =12
+                  Text: =ThisItem.Answer
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =907
+                  X: =16
+                  Y: =103
+            - txtQuestion:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =86
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =12
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =18
+                  Text: =ThisItem.Question
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =907
+                  X: =16
+                  Y: =17
+      - galQTopics:
+          Control: Gallery@2.15.0
+          Variant: Horizontal
+          Properties:
+            BorderColor: =RGBA(245, 245, 245, 1)
+            Height: =126
+            Items: =colSelectedCats
+            TemplatePadding: =0
+            TemplateSize: =237
+            Width: =961
+            WrapCount: =2
+            Y: =47
+          Children:
+            - btnTopic:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  DisabledFill: =RGBA(242, 242, 241, 0)
+                  Fill: |+
+                    =If(ThisItem.cat = varSelectedTopic, ColorValue("#0078D4"), ColorValue("#E5E5E5"))
+
+                  Font: =Font.'Segoe UI'
+                  Height: =50
+                  HoverBorderColor: =RGBA(0, 0, 0, 0)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =RGBA(16, 110, 190, 1)
+                  OnSelect: =Set(varSelectedTopic, ThisItem.cat)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PressedBorderColor: =RGBA(0, 69, 120, 1)
+                  PressedColor: =RGBA(255, 255, 255, 1)
+                  PressedFill: =RGBA(16, 110, 190, 1)
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Text: =ThisItem.cat
+                  Width: =222
+                  X: =4
+                  Y: =4
+      - lblCorrect:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =23
+            Text: |-
+              ="Correct: " & CountIf(colQGrade,IsCorrect="Correct") + CountIf(colWIQGrade,IsCorrect="Correct")
+            X: =976
+            Y: =104
+      - btnRefreshInt:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            DisabledFill: =RGBA(242, 242, 241, 0)
+            Fill: =RGBA(0, 120, 212, 1)
+            Font: =Font.'Segoe UI'
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(16, 110, 190, 1)
+            OnSelect: |
+              =// =====================================================
+              // DETERMINE COMPENSATION CATEGORY
+              //
+              // Interview target = 24 questions.
+              //
+              // Every category uses:
+              //
+              //   2 Questions from Sub A
+              //   1 Question from Sub B
+              //
+              // Total = 3 Questions per category.
+              //
+              // If fewer than 8 categories are selected,
+              // extra questions are assigned using this priority:
+              //
+              // 1. Electric
+              // 2. Mechanical
+              // 3. Pneumatics
+              // 4. Pumps
+              // 5. Hydraulics
+              // 6. Conveyors/Brakes
+              // 7. Flames
+              //
+              // General never receives extra questions.
+              // =====================================================
+              Set(
+                  varCompCat,
+                  If(
+                      !IsBlank(
+                          LookUp(
+                              colSelectedCats,
+                              cat = "Electric",
+                              cat
+                          )
+                      ),
+                      "Electric",
+                      If(
+                          !IsBlank(
+                              LookUp(
+                                  colSelectedCats,
+                                  cat = "Mechanical",
+                                  cat
+                              )
+                          ),
+                          "Mechanical",
+                          If(
+                              !IsBlank(
+                                  LookUp(
+                                      colSelectedCats,
+                                      cat = "Pneumatics",
+                                      cat
+                                  )
+                              ),
+                              "Pneumatics",
+                              If(
+                                  !IsBlank(
+                                      LookUp(
+                                          colSelectedCats,
+                                          cat = "Pumps",
+                                          cat
+                                      )
+                                  ),
+                                  "Pumps",
+                                  If(
+                                      !IsBlank(
+                                          LookUp(
+                                              colSelectedCats,
+                                              cat = "Hydraulics",
+                                              cat
+                                          )
+                                      ),
+                                      "Hydraulics",
+                                      If(
+                                          !IsBlank(
+                                              LookUp(
+                                                  colSelectedCats,
+                                                  cat = "Conveyors/Brakes",
+                                                  cat
+                                              )
+                                          ),
+                                          "Conveyors/Brakes",
+                                          "Flames"
+                                      )
+                                  )
+                              )
+                          )
+                      )
+                  )
+              );
+              // =====================================================
+              // PRESERVE GRADED QUESTIONS
+              //
+              // Keep only questions already graded.
+              //
+              // Ungraded questions are removed and rebuilt.
+              // =====================================================
+              ClearCollect(
+                  colInterviewQuestions,
+                  Filter(
+                      colInterviewQuestions,
+                      ID in colQGrade.QuestionID
+                  )
+              );
+              // =====================================================
+              // CALCULATE COMPENSATION AMOUNT
+              //
+              // Each selected category contributes:
+              //
+              //   2A + 1B = 3 Questions
+              //
+              // Missing questions are added to the
+              // compensation category while preserving
+              // the 2A : 1B ratio.
+              // =====================================================
+              Set(
+                  varMissingQuestions,
+                  Max(
+                      24 - (CountRows(colSelectedCats) * 3),
+                      0
+                  )
+              );
+              // =====================================================
+              // REBUILD MISSING QUESTIONS
+              //
+              // Rules:
+              //
+              // • A replaces A
+              // • B replaces B
+              // • Preserve graded questions
+              // • Randomized replacements
+              // • No duplicates
+              // • Compensation category receives extras
+              // • Compensation maintains 2A : 1B ratio
+              // =====================================================
+              ForAll(
+                  colSelectedCats As c,
+                  With(
+                      {
+                          TargetA: If(
+                              c.cat = varCompCat,
+                              2 + RoundDown(
+                                  varMissingQuestions * (2 / 3),
+                                  0
+                              ),
+                              2
+                          ) + If(
+                              c.cat = varBonusCat,
+                              varBonusA,
+                              0
+                          ),
+                          TargetB: If(
+                              c.cat = varCompCat,
+                              1 + RoundUp(
+                                  varMissingQuestions * (1 / 3),
+                                  0
+                              ),
+                              1
+                          ) + If(
+                              c.cat = varBonusCat,
+                              varBonusB,
+                              0
+                          ),
+                          CurrentA: CountRows(
+                              Filter(
+                                  colInterviewQuestions,
+                                  Cat = c.cat && Sub = "A"
+                              )
+                          ),
+                          CurrentB: CountRows(
+                              Filter(
+                                  colInterviewQuestions,
+                                  Cat = c.cat && Sub = "B"
+                              )
+                          )
+                      },
+                      Collect(
+                          colInterviewQuestions,
+                          FirstN(
+                              Shuffle(
+                                  Filter(
+                                      AP_INT,
+                                      Cat = c.cat && Sub = "A" && !(ID in colInterviewQuestions.ID)
+                                  )
+                              ),
+                              Max(
+                                  TargetA - CurrentA,
+                                  0
+                              )
+                          ),
+                          FirstN(
+                              Shuffle(
+                                  Filter(
+                                      AP_INT,
+                                      Cat = c.cat && Sub = "B" && !(ID in colInterviewQuestions.ID)
+                                  )
+                              ),
+                              Max(
+                                  TargetB - CurrentB,
+                                  0
+                              )
+                          )
+                      )
+                  )
+              );
+            PressedBorderColor: =RGBA(0, 69, 120, 1)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(16, 110, 190, 1)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: |-
+              ="Refresh
+              "
+            Visible: =!varBonusUsed
+            X: =420
+            Y: =691
+      - btnWriteInQuestion:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            DisabledFill: =RGBA(242, 242, 241, 0)
+            Fill: =RGBA(109, 49, 162, 1)
+            Font: =Font.'Segoe UI'
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(16, 110, 190, 1)
+            OnSelect: =Set(varShowWIPopup, true)
+            PressedBorderColor: =RGBA(0, 69, 120, 1)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(16, 110, 190, 1)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =13
+            Text: ="Write-In Question"
+            Width: =176
+            X: =595
+            Y: =691
+      - btnCompleted:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            DisabledFill: =RGBA(242, 242, 241, 0)
+            Fill: |-
+              =If(
+                  CountIf(
+                      colQGrade,
+                      IsCorrect = "Correct"
+                  ) + CountIf(
+                      colQGrade,
+                      IsCorrect = "Incorrect"
+                  ) + CountIf(
+                      colWIQGrade,
+                      IsCorrect = "Correct"
+                  ) + CountIf(
+                      colWIQGrade,
+                      IsCorrect = "Incorrect"
+                  ) < 20,
+                  Color.Gray,
+                  Color.Green
+              )
+            Font: =Font.'Segoe UI'
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(16, 110, 190, 1)
+            OnSelect: |
+              =Set(
+                  varTotalAnswered,
+                  CountIf(
+                      colQGrade,
+                      IsCorrect = "Correct"
+                  ) + CountIf(
+                      colQGrade,
+                      IsCorrect = "Incorrect"
+                  ) + CountIf(
+                      colWIQGrade,
+                      IsCorrect = "Correct"
+                  ) + CountIf(
+                      colWIQGrade,
+                      IsCorrect = "Incorrect"
+                  )
+              );
+              //This is the message of the board being completed, the PDF will send no mather what
+              If(
+                  Confirm(
+                      If(
+                          varTotalAnswered < 20,
+                          User().FullName & " Interview is not complete (less than 20 answered). Are you sure you want to finish?",
+                          varTotalAnswered >= 20,
+                          "Are you sure the Interview is completed?"
+                      )
+                  ),
+                  Navigate(scrReview)
+              );
+              Set(
+                  varCorrect,
+                  If(
+                      CountRows(colQGrade) + CountRows(colWIQGrade) = 0,
+                      0,
+                      RoundDown(
+                          (CountIf(
+                              colQGrade,
+                              IsCorrect = "Correct"
+                          ) + CountIf(
+                              colWIQGrade,
+                              IsCorrect = "Correct"
+                          )) / (CountIf(
+                              colQGrade,
+                              IsCorrect = "Correct"
+                          ) + CountIf(
+                              colQGrade,
+                              IsCorrect = "Incorrect"
+                          ) + CountIf(
+                              colWIQGrade,
+                              IsCorrect = "Correct"
+                          ) + CountIf(
+                              colWIQGrade,
+                              IsCorrect = "Incorrect"
+                          )) * 100,
+                          0
+                      )
+                  )
+              );
+              Set(
+                  varIntStatus,
+                  If(
+                      varCorrect >= 80,
+                      "Passed",
+                      "Failed"
+                  )
+              );
+              //Information for Report, this will update the List
+              Patch(
+                  Int_Data,
+                  LookUp(
+                      Int_Data,
+                      ID = varIntID
+                  ),
+                  {
+                      Int_Result: varIntStatus,
+                      TotalCorrect: CountIf(
+                          colQGrade,
+                          IsCorrect = "Correct"
+                      ) + CountIf(
+                          colWIQGrade,
+                          IsCorrect = "Correct"
+                      ),
+                      TotalIncorrect: CountIf(
+                          colQGrade,
+                          IsCorrect = "Incorrect"
+                      ) + CountIf(
+                          colWIQGrade,
+                          IsCorrect = "Incorrect"
+                      )
+                  }
+              );
+
+              //Placement Questions
+
+              ClearCollect(
+                  colPlacementQuestions,
+                  {
+                      QuestionID: 1,
+                      Question: "Work 3rd Shift?"
+                  },
+                  {
+                      QuestionID: 2,
+                      Question: "Work at heights?"
+                  },
+                  {
+                      QuestionID: 3,
+                      Question: "Become Repel Certified?"
+                  },
+                  {
+                      QuestionID: 4,
+                      Question: "Work in confined spaces?"
+                  },
+                  {
+                      QuestionID: 5,
+                      Question: "Pass a swim test?"
+                  },
+                  {
+                      QuestionID: 6,
+                      Question: "Come in contact with chlorinated water?"
+                  },
+                  {
+                      QuestionID: 7,
+                      Question: "Work outside?"
+                  }
+              );
+              Clear(colPlacementAnswers)
+            PressedBorderColor: =RGBA(0, 69, 120, 1)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(16, 110, 190, 1)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =13
+            Text: |-
+              =If(
+                  CountIf(
+                      colQGrade,
+                      IsCorrect = "Correct"
+                  ) + CountIf(
+                      colQGrade,
+                      IsCorrect = "Incorrect"
+                  ) + CountIf(
+                      colWIQGrade,
+                      IsCorrect = "Correct"
+                  ) + CountIf(
+                      colWIQGrade,
+                      IsCorrect = "Incorrect"
+                  ) < 20,
+                  "Minimum not met",
+                  "Save & Complete"
+              )
+            Visible: |-
+              =//!IsEmpty(colQGrade)
+
+              true
+            Width: =178
+            X: =1141
+            Y: =691
+      - btnIntBack:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            DisabledFill: =RGBA(242, 242, 241, 0)
+            Fill: =RGBA(255, 0, 0, 1)
+            Font: =Font.'Segoe UI'
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(16, 110, 190, 1)
+            OnSelect: =Set(varSelectedTopic,Blank()); Navigate(scrInfo)
+            PressedBorderColor: =RGBA(0, 69, 120, 1)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(16, 110, 190, 1)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Back"
+            X: =10
+            Y: =691
+      - lblIncorrect:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =21
+            Text: |-
+              ="Incorrect: " & CountIf(colQGrade,IsCorrect="Incorrect") + CountIf(colWIQGrade,IsCorrect="Incorrect")
+            X: =1203
+            Y: =106
+      - lbl%B:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: |-
+              =If(
+                  CountRows(colQGrade) + CountRows(colWIQGrade) = 0,
+                  Color.Black,
+                  If(
+                      (
+                          CountIf(colQGrade, IsCorrect = "Correct") +
+                          CountIf(colWIQGrade, IsCorrect = "Correct")
+                      ) /
+                      (
+                          CountRows(colQGrade) +
+                          CountRows(colWIQGrade)
+                      ) >= 0.8,
+                      Color.Green,
+                      Color.Red
+                  )
+              )
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =27
+            Size: =14
+            Text: |-
+              ="% Correct: " & Round(
+                  If(
+                      CountRows(colQGrade) + CountRows(colWIQGrade) = 0,
+                      0,
+                      (CountIf(
+                          colQGrade,
+                          IsCorrect = "Correct"
+                      ) + CountIf(
+                          colWIQGrade,
+                          IsCorrect = "Correct"
+                      )) / (CountRows(colQGrade) + CountRows(colWIQGrade)) * 100
+                  ),
+                  0
+              ) & "%"
+            Width: =167
+            X: =1071
+            Y: =136
+      - lblIntTitle:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            AutoHeight: =true
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =76
+            Size: =22
+            Text: ="Ride and Show Apprentice Interview"
+            Width: =854
+            X: =228
+      - lblApprIntName:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Size: =11
+            Text: =txtApprName.Text
+            Width: =279
+            X: =1015
+            Y: =47
+      - ctWI:
+          Control: GroupContainer@1.5.0
+          Variant: ManualLayout
+          Properties:
+            BorderColor: =RGBA(204, 218, 228, 1)
+            BorderThickness: =20
+            Fill: =RGBA(217, 217, 216, 1)
+            Height: =412
+            Visible: |-
+              =varShowWIPopup
+              //true
+            Width: =1001
+            X: =165
+            Y: =190
+          Children:
+            - txtWIQuestion:
+                Control: Classic/TextInput@2.3.2
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  Default: =""
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  DisabledFill: =RGBA(242, 242, 241, 0)
+                  Font: =Font.'Segoe UI'
+                  HintText: ="Question"
+                  HoverBorderColor: =RGBA(16, 110, 190, 1)
+                  HoverColor: =RGBA(50, 49, 48, 1)
+                  HoverFill: =RGBA(255, 255, 255, 1)
+                  PressedBorderColor: =RGBA(0, 120, 212, 1)
+                  PressedColor: =RGBA(50, 49, 48, 1)
+                  PressedFill: =RGBA(255, 255, 255, 1)
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Width: =723
+                  X: =20
+                  Y: =84
+            - lblWI:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  BorderThickness: =2
+                  Color: =RGBA(50, 49, 48, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  FocusedBorderThickness: =4
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =FontWeight.Bold
+                  Text: ="Please type your Write-In Question"
+                  Width: =316
+                  X: =340
+                  Y: =30
+            - txtWIAnswer:
+                Control: Classic/TextInput@2.3.2
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  Default: =""
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  DisabledFill: =RGBA(242, 242, 241, 0)
+                  Font: =Font.'Segoe UI'
+                  Height: =119
+                  HintText: ="Answer"
+                  HoverBorderColor: =RGBA(16, 110, 190, 1)
+                  HoverColor: =RGBA(50, 49, 48, 1)
+                  HoverFill: =RGBA(255, 255, 255, 1)
+                  PressedBorderColor: =RGBA(0, 120, 212, 1)
+                  PressedColor: =RGBA(50, 49, 48, 1)
+                  PressedFill: =RGBA(255, 255, 255, 1)
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Size: =10
+                  Width: =723
+                  X: =20
+                  Y: =139
+            - lblWIWho:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  BorderThickness: =2
+                  Color: =RGBA(50, 49, 48, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  FocusedBorderThickness: =4
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =FontWeight.Bold
+                  Size: =9
+                  Text: |-
+                    ="Submitted by: " & User().FullName
+                  Width: =277
+                  X: =20
+                  Y: =359
+            - drWICat:
+                Control: Classic/DropDown@2.3.1
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  ChevronBackground: =RGBA(245, 245, 245, 1)
+                  ChevronDisabledBackground: =RGBA(242, 242, 241, 0)
+                  ChevronDisabledFill: =RGBA(161, 159, 157, 1)
+                  ChevronFill: =RGBA(50, 49, 48, 1)
+                  ChevronHoverBackground: =RGBA(245, 245, 245, 1)
+                  ChevronHoverFill: =RGBA(50, 49, 48, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  Default: ="-"
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  DisabledFill: =RGBA(242, 242, 241, 0)
+                  Fill: =RGBA(245, 245, 245, 1)
+                  Font: =Font.'Segoe UI'
+                  HoverBorderColor: =RGBA(16, 110, 190, 1)
+                  HoverColor: =RGBA(50, 49, 48, 1)
+                  HoverFill: =RGBA(245, 245, 245, 1)
+                  Items: =colSelectedCats
+                  Items.Value: =cat
+                  PaddingBottom: =5
+                  PaddingLeft: =12
+                  PaddingRight: =5
+                  PaddingTop: =5
+                  PressedBorderColor: =RGBA(16, 110, 190, 1)
+                  PressedColor: =RGBA(255, 255, 255, 1)
+                  PressedFill: =RGBA(0, 120, 212, 1)
+                  SelectionColor: =RGBA(50, 49, 48, 1)
+                  SelectionFill: =RGBA(0, 120, 212, 1)
+                  Width: =207
+                  X: =779
+                  Y: =139
+            - lblWIMod:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  BorderThickness: =2
+                  Color: =RGBA(50, 49, 48, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  FocusedBorderThickness: =4
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =FontWeight.Bold
+                  Text: ="Category (*)"
+                  Width: =115
+                  X: =872
+                  Y: =99
+            - lblWIDate:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  BorderThickness: =2
+                  Color: =RGBA(50, 49, 48, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  FocusedBorderThickness: =4
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =FontWeight.Bold
+                  Size: =9
+                  Text: |-
+                    ="Date: " & Today()
+                  Width: =108
+                  X: =297
+                  Y: =359
+            - btnWICorrect:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  DisabledFill: =RGBA(242, 242, 241, 0)
+                  Fill: =RGBA(54, 176, 75, 1)
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =FontWeight.Bold
+                  HoverBorderColor: =RGBA(0, 0, 0, 0)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =RGBA(16, 110, 190, 1)
+                  OnSelect: |-
+                    =With(
+                        {
+                            q: Lower(Trim(txtWIQuestion.Text)),
+                            a: Lower(Trim(txtWIAnswer.Text))
+                        },
+                        If(
+                            IsBlank(q) ||
+                            IsBlank(a) ||
+                            drWICat.Selected.cat = "-" ||
+                            q in ["wi", "write-in", "write in","write in question","write-in question","wi question","w-i question"] ||
+                            a in ["wi", "correct", "incorrect","write in answer","write-in answer", "wi answer", "w-i answer"],
+
+                            Notify("Question, Answer and Category required.", NotificationType.Error),
+
+                            Collect(
+                                colWIQGrade,
+                                {
+                                    QuestionID: GUID(),
+                                    QNumber: "WI",
+                                    Question: txtWIQuestion.Text,
+                                    IsCorrect: "Correct",
+                                    Cat: drWICat.Selected.cat
+                                }
+                            );
+
+                            Patch(
+                                ApprWI_Questions,
+                                Defaults(ApprWI_Questions),
+                                {
+                                    SessionID: varIntID,
+                                    Question: txtWIQuestion.Text,
+                                    Answer: txtWIAnswer.Text,
+                                    Result:"Correct",
+                                    Int1_Name: varInt1.Text,
+                                    Date: Today(),
+                                    Cat: drWICat.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1Bcat'
+                                }
+                            );
+
+                            Reset(txtWIAnswer);
+                            Reset(txtWIQuestion);
+                            Reset(drWICat);
+                            Set(varShowWIPopup, false)
+                        )
+                    )
+                  PressedBorderColor: =RGBA(0, 69, 120, 1)
+                  PressedColor: =RGBA(255, 255, 255, 1)
+                  PressedFill: =RGBA(16, 110, 190, 1)
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Text: ="Correct"
+                  Tooltip: =false
+                  X: =162
+                  Y: =288
+            - btnWIIncorrect:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  DisabledFill: =RGBA(242, 242, 241, 0)
+                  Fill: =RGBA(255, 0, 0, 1)
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =FontWeight.Bold
+                  HoverBorderColor: =RGBA(0, 0, 0, 0)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =RGBA(16, 110, 190, 1)
+                  OnSelect: |-
+                    =With(
+                        {
+                            q: Lower(Trim(txtWIQuestion.Text)),
+                            a: Lower(Trim(txtWIAnswer.Text))
+                        },
+                        If(
+                            IsBlank(q) ||
+                            IsBlank(a) ||
+                            drWICat.Selected.cat = "-" ||
+                            q in ["wi", "write-in", "write in","write in question","write-in question","wi question","w-i question"] ||
+                            a in ["wi", "correct", "incorrect","write in answer","write-in answer", "wi answer", "w-i answer"],
+
+                            Notify("Question, Answer and Mod required.", NotificationType.Error),
+
+                            Collect(
+                                colWIQGrade,
+                                {
+                                    QuestionID: GUID(),
+                                    QNumber: "WI",
+                                    Question: txtWIQuestion.Text,
+                                    IsCorrect: "Incorrect",
+                                    Cat: drWICat.Selected.cat
+                                }
+                            );
+
+                            Patch(
+                                ApprWI_Questions,
+                                Defaults(ApprWI_Questions),
+                                {
+                                    SessionID: varIntID,
+                                    Question: txtWIQuestion.Text,
+                                    Answer: txtWIAnswer.Text,
+                                    Result:"Incorrect",
+                                    Int1_Name: varInt1.Text,
+                                    Date: Today(),
+                                    Cat: drWICat.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1Bcat'
+                                }
+                            );
+
+                            Reset(txtWIAnswer);
+                            Reset(txtWIQuestion);
+                            Reset(drWICat);
+                            Set(varShowWIPopup, false)
+                        )
+                    )
+                  PressedBorderColor: =RGBA(0, 69, 120, 1)
+                  PressedColor: =RGBA(255, 255, 255, 1)
+                  PressedFill: =RGBA(16, 110, 190, 1)
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Text: ="Incorrect"
+                  X: =496
+                  Y: =288
+            - Icon1:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  Color: =Color.Red
+                  DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                  DisabledColor: =RGBA(225, 223, 221, 1)
+                  DisabledFill: =RGBA(0, 0, 0, 0)
+                  FocusedBorderThickness: =4
+                  Height: =26
+                  HoverBorderColor: =RGBA(0, 0, 0, 0)
+                  HoverColor: =RGBA(16, 110, 190, 1)
+                  HoverFill: =RGBA(0, 0, 0, 0)
+                  Icon: =Icon.Cancel
+                  OnSelect: =If(Confirm(User().FullName & ", Are you sure you want to cancel?"),Reset(txtWIAnswer);Reset(txtWIQuestion);Reset(drWICat);Set(varShowWIPopup,false))
+                  PressedBorderColor: =RGBA(0, 0, 0, 0)
+                  PressedColor: =RGBA(16, 110, 190, 1)
+                  PressedFill: =RGBA(0, 0, 0, 0)
+                  Width: =27
+                  X: =960
+                  Y: =15
+      - Button1:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            DisabledFill: =RGBA(242, 242, 241, 0)
+            Fill: =Color.Orange
+            Font: =Font.'Segoe UI'
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(16, 110, 190, 1)
+            OnSelect: |-
+              =If(
+                  !IsBlank(
+                      LookUp(
+                          colSelectedCats,
+                          cat = "Electric"
+                      )
+                  ),
+
+                  // Electric Selected
+                  Set(varBonusCat, "Mechanical");
+              Set(varBonusA, 2);
+              Set(varBonusB, 3);
+
+                  Set(varBonusCat, "Mechanical");
+                  Set(varBonusA, 2);
+                  Set(varBonusB, 3);
+
+                  Collect(
+                      colInterviewQuestions,
+
+                      FirstN(
+                          Shuffle(
+                              Filter(
+                                  AP_INT,
+                                  Cat = "Mechanical" &&
+                                  Sub = "A" &&
+                                  !(ID in colInterviewQuestions.ID)
+                              )
+                          ),
+                          2
+                      ),
+
+                      FirstN(
+                          Shuffle(
+                              Filter(
+                                  AP_INT,
+                                  Cat = "Mechanical" &&
+                                  Sub = "B" &&
+                                  !(ID in colInterviewQuestions.ID)
+                              )
+                          ),
+                          3
+                      )
+                  ),
+
+                  // Electric NOT Selected
+                  Collect(
+                      colSelectedCats,
+                      {
+                          cat: "Electric"
+                      }
+                  );
+
+                  Set(varBonusCat, "Electric");
+              Set(varBonusA, 2);
+              Set(varBonusB, 3);
+
+                  Collect(
+                      colInterviewQuestions,
+
+                      FirstN(
+                          Shuffle(
+                              Filter(
+                                  AP_INT,
+                                  Cat = "Electric" &&
+                                  Sub = "A" &&
+                                  !(ID in colInterviewQuestions.ID)
+                              )
+                          ),
+                          2
+                      ),
+
+                      FirstN(
+                          Shuffle(
+                              Filter(
+                                  AP_INT,
+                                  Cat = "Electric" &&
+                                  Sub = "B" &&
+                                  !(ID in colInterviewQuestions.ID)
+                              )
+                          ),
+                          3
+                      )
+                  )
+              );
+
+              Set(varBonusUsed,true);
+              Notify( varBonusCat & " Questions Added - Refresh Disabled", NotificationType.Information, 3000)
+            PressedBorderColor: =RGBA(0, 69, 120, 1)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(16, 110, 190, 1)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: |-
+              =If(
+                  !IsBlank(
+                      LookUp(
+                          colSelectedCats,
+                          cat = "Electric"
+                      )
+                  ),
+                  "Add Mechanical Questions",
+                  "Add Electrical Questions"
+              )
+            Visible: =!varBonusUsed
+            Width: =341
+            X: =787
+            Y: =691
+      - lblApprIntName_1:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =24
+            Size: =10
+            Text: =txtApprSSO.Text
+            Width: =97
+            X: =1106
+            Y: =81

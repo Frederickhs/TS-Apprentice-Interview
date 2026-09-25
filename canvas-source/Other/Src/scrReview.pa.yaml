@@ -1,0 +1,1389 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  scrReview:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+      OnVisible: =Reset(txtTAPNotes);Reset(txtPlacementNotes);Reset(txtVenue1);Reset(txtVenue2);Reset(txtVenue3);
+    Children:
+      - Canvas2:
+          Control: FluidGrid@2.3.0
+          Properties:
+            BorderThickness: =0
+            Height: =Parent.Height - Self.Y
+            Width: =Parent.Width
+            Y: =
+          Children:
+            - DataCard4:
+                Control: DataCard@1.0.2
+                Properties:
+                  Height: =779
+                  Width: =Parent.Width
+                  X: =0
+                  Y: =0
+                Children:
+                  - imgBannerBoard_4:
+                      Control: Image@2.2.3
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        FocusedBorderThickness: =4
+                        Height: =79
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Image: ='Universal Background'
+                        ImagePosition: =ImagePosition.Fill
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        Width: =1366
+                  - lblPQSResult_2:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Bold
+                        Height: =52
+                        Size: =18
+                        Text: ="Interview Knowledge Assessment Summary"
+                        Width: =538
+                        X: =19
+                        Y: =13
+                  - lblResult_2:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =Color.Black
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        Fill: =If(varCorrect >= 80, ColorFade(ColorValue("#107c10"),10%),ColorFade(ColorValue("#d13438"),5%))
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Bold
+                        Height: =32
+                        Size: =14
+                        Text: =varIntStatus
+                        Width: =98
+                        X: =1050
+                        Y: =30
+                  - lbl%_2:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        Fill: =If(varCorrect >= 80, ColorFade(ColorValue("#107c10"),85%),ColorFade(ColorValue("#d13438"),70%))
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Bold
+                        Height: =32
+                        Size: =10
+                        Text: |-
+                          ="Correct Answers: " & varCorrect & "%"
+                        Width: =160
+                        X: =1164
+                        Y: =30
+                  - galResult_2:
+                      Control: Gallery@2.15.0
+                      Variant: BrowseLayout_Vertical_TwoTextVariant_ver5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        Height: =610
+                        Items: |-
+                          =SortByColumns(
+                              Filter(
+                                  colInterviewQuestions As q,
+                                  !IsBlank(
+                                      LookUp(
+                                          colQGrade,
+                                          QuestionID = q.ID
+                                      )
+                                  )
+                              ),
+                              "ID",
+                              SortOrder.Ascending
+                          )
+                        Width: =843
+                        Y: =151
+                      Children:
+                        - Rectangle17_2:
+                            Control: Rectangle@2.3.0
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 0)
+                              Fill: =RGBA(0, 120, 212, 1)
+                              Height: =82
+                              OnSelect: =Select(Parent)
+                              Visible: =ThisItem.IsSelected
+                              Width: =4
+                        - lblFinalQuestion_2:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Color: =RGBA(50, 49, 48, 1)
+                              DisabledColor: =RGBA(161, 159, 157, 1)
+                              Font: =Font.'Segoe UI'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                              Height: =Self.Size * 1.8
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =12
+                              PaddingRight: =0
+                              PaddingTop: =0
+                              Size: =14
+                              Text: =ThisItem.Question
+                              VerticalAlign: =VerticalAlign.Top
+                              Width: =Parent.TemplateWidth - 86
+                              X: =16
+                              Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + lblFinalAnswer_2.Size * 1.8)) / 2
+                        - lblFinalAnswer_2:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Color: =RGBA(96, 94, 92, 1)
+                              DisabledColor: =RGBA(161, 159, 157, 1)
+                              Fill: =If(LookUp(colQGrade,QuestionID=ThisItem.ID).IsCorrect="Correct",ColorFade(ColorValue("#107C10"),85%),ColorFade(ColorValue("#D13438"),85%))
+                              Font: =Font.'Segoe UI'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                              Height: =24
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =12
+                              PaddingRight: =0
+                              PaddingTop: =0
+                              Size: =12
+                              Text: =LookUp(colQGrade,QuestionID = ThisItem.ID).IsCorrect
+                              VerticalAlign: =VerticalAlign.Top
+                              Width: =78
+                              X: =34
+                              Y: =52
+                        - lblFinalMod_2:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 0)
+                              BorderStyle: =BorderStyle.None
+                              BorderThickness: =2
+                              Color: =RGBA(50, 49, 48, 1)
+                              DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                              DisabledColor: =RGBA(161, 159, 157, 1)
+                              FocusedBorderThickness: =4
+                              Font: =Font.'Segoe UI'
+                              Height: =32
+                              Text: |-
+                                ="Category: " & ThisItem.Cat
+                              Width: =298
+                              X: =545
+                              Y: =48
+                        - Rectangle2:
+                            Control: Rectangle@2.3.0
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 0)
+                              BorderStyle: =BorderStyle.None
+                              BorderThickness: =2
+                              DisabledFill: =RGBA(161, 159, 157, 1)
+                              Fill: =RGBA(0, 120, 212, 1)
+                              FocusedBorderThickness: =4
+                              Height: =1
+                              HoverFill: =RGBA(0, 120, 212, 1)
+                              OnSelect: =Select(Parent)
+                              PressedFill: =RGBA(0, 120, 212, 1)
+                              Width: =843
+                              Y: =82
+                  - ctnWI:
+                      Control: GroupContainer@1.5.0
+                      Variant: ManualLayout
+                      Properties:
+                        Height: =577
+                        Visible: |+
+                          =CountRows(colWIQGrade) > 0
+                        Width: =480
+                        X: =867
+                        Y: =151
+                      Children:
+                        - Label10:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 0, 0, 0)
+                              BorderStyle: =BorderStyle.None
+                              BorderThickness: =2
+                              Color: =RGBA(50, 49, 48, 1)
+                              DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                              DisabledColor: =RGBA(161, 159, 157, 1)
+                              FocusedBorderThickness: =4
+                              Font: =Font.'Segoe UI'
+                              FontWeight: =FontWeight.Bold
+                              Height: =30
+                              Text: ="Write-In Questions"
+                              Width: =441
+                              X: =20
+                              Y: =5
+                        - galWI:
+                            Control: Gallery@2.15.0
+                            Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+                            Properties:
+                              BorderColor: =RGBA(145, 143, 141, 1)
+                              BorderStyle: =BorderStyle.None
+                              BorderThickness: =10
+                              Height: =527
+                              Items: =colWIQGrade
+                              TemplateSize: =92
+                              Width: =480
+                              Y: =35
+                            Children:
+                              - Rectangle6_2:
+                                  Control: Rectangle@2.3.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    Fill: =RGBA(0, 120, 212, 1)
+                                    Height: =Parent.TemplateHeight - Separator5_2.Height
+                                    OnSelect: =Select(Parent)
+                                    Visible: =ThisItem.IsSelected
+                                    Width: =4
+                              - Title4_2:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 1)
+                                    Color: =RGBA(50, 49, 48, 1)
+                                    DisabledColor: =RGBA(161, 159, 157, 1)
+                                    Font: =Font.'Segoe UI'
+                                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                                    Height: =38
+                                    OnSelect: =Select(Parent)
+                                    PaddingBottom: =0
+                                    PaddingLeft: =12
+                                    PaddingRight: =0
+                                    PaddingTop: =0
+                                    Size: =14
+                                    Text: =ThisItem.QNumber & " - " & ThisItem.Question
+                                    VerticalAlign: =VerticalAlign.Top
+                                    Width: =451
+                                    X: =15
+                                    Y: =10
+                              - Subtitle4_4:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 1)
+                                    Color: |
+                                      =Color.Black
+                                    DisabledColor: =RGBA(161, 159, 157, 1)
+                                    Fill: =If(ThisItem.IsCorrect = "Correct", Color.LightGreen ,Color.LightSalmon )
+                                    Font: =Font.'Segoe UI'
+                                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                                    Height: =24
+                                    OnSelect: =Select(Parent)
+                                    PaddingBottom: =0
+                                    PaddingLeft: =12
+                                    PaddingRight: =0
+                                    PaddingTop: =0
+                                    Size: =12
+                                    Text: =ThisItem.IsCorrect
+                                    VerticalAlign: =VerticalAlign.Top
+                                    Width: =110
+                                    X: =Title4_2.X
+                                    Y: =48
+                              - Subtitle4_5:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 1)
+                                    Color: |
+                                      =Color.Black
+                                    DisabledColor: =RGBA(161, 159, 157, 1)
+                                    Fill: =RGBA(255, 255, 255, 1)
+                                    Font: =Font.'Segoe UI'
+                                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                                    Height: =36
+                                    OnSelect: =Select(Parent)
+                                    PaddingBottom: =0
+                                    PaddingLeft: =12
+                                    PaddingRight: =0
+                                    PaddingTop: =0
+                                    Size: =12
+                                    Text: |-
+                                      ="Category: " & ThisItem.Cat
+                                    VerticalAlign: =VerticalAlign.Top
+                                    Width: =305
+                                    X: =175
+                                    Y: =Title4_2.Y + Title4_2.Height
+                              - Separator5_2:
+                                  Control: Rectangle@2.3.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    Fill: =RGBA(255, 255, 255, 1)
+                                    Height: =8
+                                    OnSelect: =Select(Parent)
+                                    Width: =Parent.TemplateWidth
+                                    Y: =Parent.TemplateHeight - Self.Height
+                              - Separator15_5:
+                                  Control: Rectangle@2.3.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    Fill: =RGBA(0, 120, 212, 1)
+                                    Height: =8
+                                    OnSelect: =Select(Parent)
+                                    Width: =Parent.TemplateWidth
+                                    Y: =Parent.TemplateHeight - Self.Height
+                  - lblApprIntName_4:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        Text: =txtApprName.Text
+                        Width: =292
+                        X: =658
+                        Y: =19
+                  - galRes_2:
+                      Control: Gallery@2.15.0
+                      Variant: BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0
+                      Properties:
+                        BorderColor: =RGBA(230, 230, 230, 1)
+                        BorderThickness: =4
+                        Height: =72
+                        Items: |-
+                          =AddColumns(
+                              colSelectedCats,
+                              CorrectCount,
+                              CountRows(
+                                  Filter(
+                                      colQGrade,
+                                      IsCorrect = "Correct" &&
+                                      QuestionID in Filter(
+                                          colInterviewQuestions,
+                                          Cat = cat
+                                      ).ID
+                                  )
+                              ),
+                              TotalQuestions,
+                              CountRows(
+                                  Filter(
+                                      colInterviewQuestions,
+                                      Cat = cat
+                                  )
+                              )
+                          )
+                        TemplateSize: =163
+                        Width: =1366
+                        Y: =79
+                      Children:
+                        - lblACat_2:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Color: =RGBA(50, 49, 48, 1)
+                              DisabledColor: =RGBA(161, 159, 157, 1)
+                              Font: =Font.'Segoe UI'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                              Height: =29
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =12
+                              PaddingRight: =0
+                              PaddingTop: =0
+                              Text: =ThisItem.cat
+                              VerticalAlign: =VerticalAlign.Top
+                              Width: =163
+                              Y: =8
+                        - lblAnswered_2:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Color: =RGBA(96, 94, 92, 1)
+                              DisabledColor: =RGBA(161, 159, 157, 1)
+                              Font: =Font.'Segoe UI'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                              Height: =25
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =12
+                              PaddingRight: =0
+                              PaddingTop: =0
+                              Size: =11
+                              Text: =ThisItem.CorrectCount & " / " & ThisItem.TotalQuestions
+                              VerticalAlign: =VerticalAlign.Top
+                              Width: =69
+                              X: =63
+                              Y: =37
+            - DataCard5:
+                Control: DataCard@1.0.2
+                Variant: BlankCard
+                Properties:
+                  Height: =1185
+                  Width: =1366
+                  X: =0
+                  Y: =1
+                Children:
+                  - galPlacementQuestions:
+                      Control: Gallery@2.15.0
+                      Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+                      Properties:
+                        BorderColor: =RGBA(245, 245, 245, 1)
+                        Height: =721
+                        Items: =colPlacementQuestions
+                        TemplateSize: =101
+                        Width: =588
+                        X: =10
+                        Y: =164
+                      Children:
+                        - lblPQuestion:
+                            Control: Label@2.5.1
+                            Properties:
+                              AutoHeight: =true
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Color: =RGBA(50, 49, 48, 1)
+                              DisabledColor: =RGBA(161, 159, 157, 1)
+                              Font: =Font.'Segoe UI'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Bold, FontWeight.Normal)
+                              Height: =20
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =0
+                              PaddingRight: =0
+                              PaddingTop: =0
+                              Size: =12
+                              Text: =ThisItem.Question
+                              VerticalAlign: =VerticalAlign.Top
+                              Width: =301
+                              X: =9
+                              Y: =29
+                        - chkPlacementYes:
+                            Control: Classic/CheckBox@2.1.0
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 0)
+                              BorderStyle: =BorderStyle.None
+                              BorderThickness: =2
+                              CheckboxBorderColor: =RGBA(96, 94, 92, 1)
+                              CheckmarkFill: =RGBA(0, 120, 212, 1)
+                              Color: =RGBA(50, 49, 48, 1)
+                              Default: |-
+                                =LookUp(
+                                    colPlacementAnswers,
+                                    QuestionID = ThisItem.QuestionID,
+                                    Answer
+                                ) = "Yes"
+                              DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                              DisabledColor: =RGBA(161, 159, 157, 1)
+                              FocusedBorderThickness: =4
+                              Font: =Font.'Segoe UI'
+                              Height: =35
+                              HoverBorderColor: =RGBA(0, 0, 0, 0)
+                              HoverColor: =RGBA(50, 49, 48, 1)
+                              HoverFill: =RGBA(0, 0, 0, 0)
+                              OnCheck: |-
+                                =RemoveIf(
+                                    colPlacementAnswers,
+                                    QuestionID = ThisItem.QuestionID
+                                );
+
+                                Collect(
+                                    colPlacementAnswers,
+                                    {
+                                        QuestionID: ThisItem.QuestionID,
+                                        Question: ThisItem.Question,
+                                        Answer: "Yes"
+                                    }
+                                );
+
+                                Reset(chkPlacementNo)
+                              OnSelect: =Select(Parent)
+                              OnUncheck: |-
+                                =RemoveIf(
+                                    colPlacementAnswers,
+                                    QuestionID = ThisItem.QuestionID
+                                )
+                              PressedBorderColor: =RGBA(0, 0, 0, 0)
+                              PressedColor: =RGBA(50, 49, 48, 1)
+                              PressedFill: =RGBA(0, 0, 0, 0)
+                              Size: =12
+                              Text: ="Yes"
+                              Width: =75
+                              X: =334
+                              Y: =21
+                        - chkPlacementNo:
+                            Control: Classic/CheckBox@2.1.0
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 0)
+                              BorderStyle: =BorderStyle.None
+                              BorderThickness: =2
+                              CheckboxBorderColor: =RGBA(96, 94, 92, 1)
+                              CheckmarkFill: =RGBA(0, 120, 212, 1)
+                              Color: =RGBA(50, 49, 48, 1)
+                              Default: =LookUp(colPlacementAnswers, QuestionID = ThisItem.QuestionID, Answer) = "No"
+                              DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                              DisabledColor: =RGBA(161, 159, 157, 1)
+                              FocusedBorderThickness: =4
+                              Font: =Font.'Segoe UI'
+                              Height: =35
+                              HoverBorderColor: =RGBA(0, 0, 0, 0)
+                              HoverColor: =RGBA(50, 49, 48, 1)
+                              HoverFill: =RGBA(0, 0, 0, 0)
+                              OnCheck: |-
+                                =RemoveIf(
+                                    colPlacementAnswers,
+                                    QuestionID = ThisItem.QuestionID
+                                );
+
+                                Collect(
+                                    colPlacementAnswers,
+                                    {
+                                        QuestionID: ThisItem.QuestionID,
+                                        Question: ThisItem.Question,
+                                        Answer: "No"
+                                    }
+                                );
+
+                                Reset(chkPlacementYes)
+                              OnSelect: =Select(Parent)
+                              OnUncheck: |
+                                =RemoveIf(
+                                    colPlacementAnswers,
+                                    QuestionID = ThisItem.QuestionID
+                                )
+                              PressedBorderColor: =RGBA(0, 0, 0, 0)
+                              PressedColor: =RGBA(50, 49, 48, 1)
+                              PressedFill: =RGBA(0, 0, 0, 0)
+                              Size: =12
+                              Text: ="No"
+                              Width: =78
+                              X: =409
+                              Y: =21
+                        - Rectangle1:
+                            Control: Rectangle@2.3.0
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 0)
+                              BorderStyle: =BorderStyle.None
+                              BorderThickness: =2
+                              DisabledFill: =RGBA(161, 159, 157, 1)
+                              Fill: =RGBA(0, 120, 212, 1)
+                              FocusedBorderThickness: =4
+                              Height: =1
+                              HoverFill: =RGBA(0, 120, 212, 1)
+                              OnSelect: =Select(Parent)
+                              PressedFill: =RGBA(0, 120, 212, 1)
+                              Width: =588
+                              Y: =100
+                  - lblIssue:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Bold
+                        Height: =60
+                        Size: =14
+                        Text: ="Does the apprentice have any issues/concerns being placed at a venue that will require:"
+                        Width: =590
+                        Y: =104
+                  - txtPlacementNotes:
+                      Control: Classic/TextInput@2.3.2
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(245, 245, 245, 1)
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =""
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        Font: =Font.'Segoe UI'
+                        Height: =239
+                        HintText: ="Enter placement notes, strengths and recommendations"
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(255, 255, 255, 1)
+                        Mode: =TextMode.MultiLine
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Width: =569
+                        X: =715
+                        Y: =272
+                  - lblRole:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Bold
+                        Height: =44
+                        Text: ="Recommended Role"
+                        Width: =208
+                        X: =895
+                        Y: =120
+                  - rdRole:
+                      Control: Classic/Radio@2.3.0
+                      Properties:
+                        BorderColor: =RGBA(50, 49, 48, 1)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =Blank()
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Items: =["Mechanic","Show Control"]
+                        Items.Value: =Value
+                        OnChange: |-
+                          =RemoveIf(
+                              colRole,
+                              QuestionID = "Role"
+                          );
+
+                          Collect(
+                              colRole,
+                              {
+                                  QuestionID: "Role",
+                                  Question: lblRole.Text,
+                                  Answer: rdRole.Selected.Value
+                              }
+                          )
+                        PaddingBottom: =5
+                        PaddingTop: =5
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        RadioBorderColor: =RGBA(50, 49, 48, 1)
+                        RadioSelectionFill: =RGBA(0, 120, 212, 1)
+                        Width: =184
+                        X: =919
+                        Y: =164
+                  - lblRole_3:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Bold
+                        Height: =44
+                        Size: =14
+                        Text: ="Team Member's Top 3 Venue Choices"
+                        Width: =569
+                        X: =715
+                        Y: =566
+                  - txtVenue3:
+                      Control: Classic/TextInput@2.3.2
+                      Properties:
+                        BorderColor: =RGBA(245, 245, 245, 1)
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =""
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        Font: =Font.'Segoe UI'
+                        HintText: ="3."
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(255, 255, 255, 1)
+                        OnChange: |-
+                          =RemoveIf(
+                              colVenueChoices,
+                              ChoiceNumber = 3
+                          );
+
+                          Collect(
+                              colVenueChoices,
+                              {
+                                  ChoiceNumber: 3,
+                                  Venue: txtVenue2.Text
+                              }
+                          )
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Width: =569
+                        X: =715
+                        Y: =726
+                  - txtVenue2:
+                      Control: Classic/TextInput@2.3.2
+                      Properties:
+                        BorderColor: =RGBA(245, 245, 245, 1)
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =""
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        Font: =Font.'Segoe UI'
+                        HintText: ="2."
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(255, 255, 255, 1)
+                        OnChange: |-
+                          =RemoveIf(
+                              colVenueChoices,
+                              ChoiceNumber = 2
+                          );
+
+                          Collect(
+                              colVenueChoices,
+                              {
+                                  ChoiceNumber: 2,
+                                  Venue: txtVenue2.Text
+                              }
+                          )
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Width: =569
+                        X: =715
+                        Y: =670
+                  - txtVenue1:
+                      Control: Classic/TextInput@2.3.2
+                      Properties:
+                        BorderColor: =RGBA(245, 245, 245, 1)
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =""
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        Font: =Font.'Segoe UI'
+                        HintText: ="1."
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(255, 255, 255, 1)
+                        OnChange: |-
+                          =RemoveIf(
+                              colVenueChoices,
+                              ChoiceNumber = 1
+                          );
+
+                          Collect(
+                              colVenueChoices,
+                              {
+                                  ChoiceNumber: 1,
+                                  Venue: txtVenue1.Text
+                              }
+                          )
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Width: =569
+                        X: =715
+                        Y: =615
+                  - imgBannerBoard_5:
+                      Control: Image@2.2.3
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        FocusedBorderThickness: =4
+                        Height: =79
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Image: ='Universal Background'
+                        ImagePosition: =ImagePosition.Fill
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        Width: =1366
+                  - lblPQSResult_3:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Bold
+                        Height: =52
+                        Size: =18
+                        Text: ="Placement"
+                        Width: =538
+                        X: =21
+                        Y: =13
+                  - lblResult_3:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =Color.Black
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        Fill: =If(varCorrect >= 80, ColorFade(ColorValue("#107c10"),10%),ColorFade(ColorValue("#d13438"),5%))
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Bold
+                        Height: =32
+                        Size: =14
+                        Text: =varIntStatus
+                        Width: =98
+                        X: =1050
+                        Y: =30
+                  - btnExit:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        Fill: =RGBA(255, 0, 0, 1)
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =RGBA(16, 110, 190, 1)
+                        OnSelect: |-
+                          =Navigate(scrHome);
+                          Set(
+                              varHTML,
+                              "
+                              <html>
+                              <head>
+                              <style>
+
+                              body{
+                                  font-family: Arial, sans-serif;
+                                  padding:20px;
+                                  font-size:12px;
+                                  color:#000;
+                              }
+
+                              h1{
+                                  text-align:center;
+                                  color:#203864;
+                                  margin-bottom:5px;
+                              }
+
+                              h2{
+                                  background-color:#203864;
+                                  color:white;
+                                  padding:6px;
+                                  font-size:14px;
+                                  margin-top:5px;
+                                  margin-bottom:5px;
+                              }
+
+                              table{
+                                  width:100%;
+                                  border-collapse:collapse;
+                                  margin-top:5;
+                                  margin-bottom:0;
+                              }
+
+                              th{
+                                  background-color:#203864;
+                                  color:white;
+                                  border:1px solid black;
+                                  padding:6px;
+                                  text-align:left;
+                              }
+
+                              td{
+                                  border:1px solid black;
+                                  padding:6px;
+                                  vertical-align:top;
+                              }
+
+                              </style>
+                              </head>
+                              <body>
+
+                              <h1>Ride & Show Apprentice Final Interview</h1>
+
+                              <table>
+                                  <tr>
+                                      <th colspan='2'>Apprentice Information</th>
+                                  </tr>
+
+                                  <tr>
+                                      <td><b>Date</b></td>
+                                      <td>" & Text(
+                                  Today(),
+                                  "mm/dd/yyyy"
+                              ) & "</td>
+                                  </tr>
+
+                                  <tr>
+                                      <td><b>Apprentice Name</b></td>
+                                      <td>" & txtApprName.Text & "</td>
+                                  </tr>
+
+                                  <tr>
+                                      <td><b>Apprentice SSO</b></td>
+                                      <td>" & txtApprSSO.Text & "</td>
+                                  </tr>
+                              </table>
+
+                              <table>
+                                  <tr>
+                                      <th colspan='2'>Interviewers</th>
+                                  </tr>
+
+                                  <tr>
+                                      <td>
+                                          <b>" & txtInt1Name.Text & "</b><br/>
+                                          SSO: " & txtInt1SSO.Text & "
+                                      </td>
+
+                                      <td>
+                                          <b>" & txtInt2Name.Text & "</b><br/>
+                                          SSO: " & txtInt2SSO.Text & "
+                                      </td>
+                                  </tr>
+
+                                  <tr>
+                                      <td>
+                                          <b>" & txtInt3Name.Text & "</b><br/>
+                                          SSO: " & txtInt3SSO.Text & "
+                                      </td>
+
+                                      <td>
+                                          <b>" & txtInt4Name.Text & "</b><br/>
+                                          SSO: " & txtInt4SSO.Text & "
+                                      </td>
+                                  </tr>
+                              </table>
+                              <table>
+                                  <tr>
+                                      <th style='width:90px;'>Question #</th>
+                                      <th>Category</th>
+                                      <th style='text-align:center;width:90px'>Result</th>
+                                  </tr>
+                              " & Concat(
+                                  galResult_2.AllItems As r,
+                                  With(
+                                      LookUp(
+                                          colQGrade,
+                                          QuestionID = r.ID
+                                      ) As g,
+                                      "
+                                      <tr>
+                                          <td>" & r.Title & "</td>
+                                          <td>" & r.Cat & "</td>
+                                          <td style='text-align:center;font-weight:bold;color:" & If(
+                                          g.IsCorrect = "Correct",
+                                          "green",
+                                          "red"
+                                      ) & ";'>" & g.IsCorrect & "</td>
+                                      </tr>
+                                      "
+                                  )
+                              ) & "
+
+
+                              </table>
+
+                          " & If(
+                                  CountRows(galWI.AllItems) > 0,
+                                  "
+                          <br></br>
+                          <table>
+                          <tr>
+                          <th colspan='3'>Write-In Questions</th>
+                          </tr>
+                              <tr>
+                                  <th style='width:90px;'>Question #</th>
+                                  <th>Category</th>
+                                  <th>Result</th>
+                              </tr>" & Concat(
+                                      galWI.AllItems As p,
+                                      "<tr>
+                                      <td>" & p.QNumber & "</td>
+                                      <td>" & p.Cat & "</td>
+                                      <td>" & p.IsCorrect & "</td>
+                                  </tr>"
+                                          )
+                               & "
+                          </table>
+                          ",
+                                  ""
+                              )
+                              & "
+                          <table style='width:100%; border:none;'>
+                          <tr>
+
+                          <td style='width:60%; border:none; vertical-align:top;'>
+
+                          <h2>TAP Recommendation</h2>
+
+                          <table>
+                              <tr>
+                                  <td style='width:180px;'><b>TAP Recommended</b></td>
+                                  <td><b>" & rdTAP.Selected.Value & "</b></td>
+                              </tr>
+                          " & If(
+                                  rdTAP.Selected.Value = "Yes" && !IsBlank(txtTAPNotes.Text),
+                                  "
+                              <tr>
+                                  <td><b>TAP Notes</b></td>
+                                  <td>" & txtTAPNotes.Text & "</td>
+                              </tr>
+                              ",
+                                  ""
+                              ) & "
+                          </table>
+
+                          </td>
+
+                          <td style='width:40%; border:none; vertical-align:top;'>
+
+                          <h2>Overall Results</h2>
+
+                          <table style='width:100%;'>
+                              <tr>
+                                  <td><b>Questions Asked</b></td>
+                                  <td style='text-align:right;'>" & CountRows(colQGrade) + CountRows(colWIQGrade) & "</td>
+                              </tr>
+
+                              <tr>
+                                  <td><b>Correct</b></td>
+                                  <td style='text-align:right;color:green;font-weight:bold;'>" & CountIf(
+                                  colQGrade,
+                                  IsCorrect = "Correct"
+                              ) + CountIf(colWIQGrade, IsCorrect = "Correct") & "</td>
+                              </tr>
+
+                              <tr>
+                                  <td><b>Incorrect</b></td>
+                                  <td style='text-align:right;color:red;font-weight:bold;'>" & CountIf(
+                                  colQGrade,
+                                  IsCorrect = "Incorrect"
+                              ) + CountIf(colWIQGrade, IsCorrect="Incorrect") & "</td>
+                              </tr>
+
+                              <tr>
+                                  <td><b>Overall Score</b></td>
+                                  <td style='text-align:right;font-weight:bold;'>" & If(
+                                  CountRows(colQGrade) = 0,
+                                  "0%",
+                                  Text(
+                              (
+                                  CountIf(
+                                      colQGrade,
+                                      IsCorrect = "Correct"
+                                  ) +
+                                  CountIf(
+                                      colWIQGrade,
+                                      IsCorrect = "Correct"
+                                  )
+                              ) /
+                              (
+                                  CountRows(colQGrade) +
+                                  CountRows(colWIQGrade)
+                              ) * 100,
+                              "0%"
+                          )) & "</td>
+                              </tr>
+                          </td>
+                          " & "
+                          </table>
+
+                          " &"
+                          <table style='width:100%; border:none;'>
+                          <tr>
+
+                          <td style='width:65%; border:none; vertical-align:top;'>
+
+                          <table>
+                              <tr>
+                                  <th>Placement Consideration</th>
+                                  <th style='width:80px;'>Answer</th>
+                              </tr>
+                          " &
+                          Concat(
+                              colPlacementAnswers,
+                              "<tr>
+                                  <td>" & Question & "</td>
+                                  <td style='text-align:center;font-weight:bold;'>" & Answer & "</td>
+                              </tr>"
+                          )
+                              &
+                              "
+                          </table>
+
+                          </td>
+
+                          <td style='width:35%; border:none; vertical-align:top;'>
+
+                          <table>
+                              <tr>
+                                  <th>Recommendation</th>
+                              </tr>
+
+                              <tr>
+                                  <td>
+                                      <b>Recommended Role</b><br/><br/>
+                                      " & rdRole.Selected.Value & "
+                                  </td>
+                              </tr>
+                          " & If(
+                                      !IsBlank(txtPlacementNotes.Text),
+                                      "
+                              <tr>
+                                  <td>
+                                      <b>Placement Notes</b><br/><br/>
+                                      " & txtPlacementNotes.Text & "
+                                  </td>
+                              </tr>
+                              ",
+                                      ""
+                                  ) & "
+                          </table>
+
+                          </td>
+
+                          </tr>
+                          </table>
+
+                          <h2>Team Member's Top 3 Venue Choices</h2>
+
+                          <table>
+                              <tr>
+                                  <td style='width:50px;'><b>1.</b></td>
+                                  <td>" & txtVenue1.Text & "</td>
+                              </tr>
+
+                              <tr>
+                                  <td><b>2.</b></td>
+                                  <td>" & txtVenue2.Text & "</td>
+                              </tr>
+
+                              <tr>
+                                  <td><b>3.</b></td>
+                                  <td>" & txtVenue3.Text & "</td>
+                              </tr>
+                          </table>
+                          <br>
+                              </body>
+                              </html>
+                          "
+                          );
+
+                          Appr_PDF_Email.Run(
+                              varHTML,
+                              "Apprentice_Interview_" & txtApprSSO.Text & "_" & txtApprName.Text & ".pdf"
+                          );
+                          Reset(txtApprSSO);
+                          Reset(txtInt1SSO);
+                          Reset(txtInt2SSO);
+                          Reset(txtInt3SSO);
+                          Reset(txtInt4SSO);
+                          Reset(varAppr);
+                          Reset(varApprSSO);
+                          Reset(varInt1);
+                          Reset(varInt2);
+                          Reset(varInt3);
+                          Reset(varInt4);
+                          Reset(varInt1SSO);
+                          Reset(varInt2SSO);
+                          Reset(varInt3SSO);
+                          Reset(varInt4SSO);
+                        PressedBorderColor: =RGBA(0, 69, 120, 1)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(16, 110, 190, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Text: ="Exit"
+                        Visible: |-
+                          =If(CountIf(colPlacementAnswers,!IsBlank(Answer))=7, true , false )&&!IsBlank(rdTAP.Selected.Value)
+                          //true
+                        X: =1164
+                        Y: =1121
+                  - lbl%_3:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        Fill: =If(varCorrect >= 80, ColorFade(ColorValue("#107c10"),85%),ColorFade(ColorValue("#d13438"),70%))
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Bold
+                        Height: =32
+                        Size: =10
+                        Text: |-
+                          ="Correct Answers: " & varCorrect & "%"
+                        Width: =160
+                        X: =1164
+                        Y: =30
+                  - lblApprIntName_5:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        Text: =txtApprName.Text
+                        Width: =292
+                        X: =658
+                        Y: =19
+                  - lblTAPQ:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Bold
+                        Height: =44
+                        Text: ="TAP Recommended?"
+                        Width: =208
+                        X: =715
+                        Y: =794
+                  - rdTAP:
+                      Control: Classic/Radio@2.3.0
+                      Properties:
+                        BorderColor: =RGBA(50, 49, 48, 1)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =Blank()
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        Height: =102
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Items: =["Yes","No"]
+                        Items.Value: =Value
+                        OnChange: |-
+                          =RemoveIf(
+                              colTAPAnswers,
+                              QuestionID = "TAP"
+                          );
+
+                          Collect(
+                              colTAPAnswers,
+                              {
+                                  QuestionID: "TAP",
+                                  Question: lblTAPQ.Text,
+                                  Answer: rdTAP.Selected.Value,
+                                  Notes: txtTAPNotes.Text
+                              }
+                          )
+                        PaddingBottom: =5
+                        PaddingTop: =5
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        RadioBorderColor: =RGBA(50, 49, 48, 1)
+                        RadioSelectionFill: =RGBA(0, 120, 212, 1)
+                        Width: =133
+                        X: =912
+                        Y: =794
+                  - txtTAPNotes:
+                      Control: Classic/TextInput@2.3.2
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(255, 0, 0, 1)
+                        BorderThickness: =4
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =""
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        Font: =Font.'Segoe UI'
+                        Height: =140
+                        HintText: ="TAP Focus Area"
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(255, 255, 255, 1)
+                        Mode: =TextMode.MultiLine
+                        OnChange: |-
+                          =RemoveIf(
+                              colTAPAnswers,
+                              QuestionID = "TAP"
+                          );
+
+                          Collect(
+                              colTAPAnswers,
+                              {
+                                  QuestionID: "TAP",
+                                  Question: lblTAPQ.Text,
+                                  Answer: rdTAP.Selected.Value,
+                                  Notes: txtTAPNotes.Text
+                              }
+                          )
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Visible: =rdTAP.SelectedText.Value = "Yes"
+                        Width: =456
+                        X: =739
+                        Y: =896
