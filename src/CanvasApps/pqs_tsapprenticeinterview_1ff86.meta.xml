@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>pqs_tsapprenticeinterview_1ff86</Name>
+  <AppVersion>2026-09-17T07:55:43Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>3.26085.11.0</CreatedByClientVersion>
+  <MinClientVersion>3.26085.11.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"1366","primaryDeviceHeight":"768","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","showStatusBar":"false","publisherVersion":"3.26085.11","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","m365CopilotSettingValue":"0","sienaVersion":"20260915T235818Z-3.26085.11.0"}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>rgba(0, 0, 0, 1)</BackgroundColor>
+  <DisplayName>TS Apprentice Interview</DisplayName>
+  <Description xsi:nil="true"></Description>
+  <CommitMessage xsi:nil="true"></CommitMessage>
+  <Publisher xsi:nil="true"></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{"d253a505-617e-4300-970d-783dd9ae415d":{"id":"/providers/microsoft.powerapps/apis/shared_sharepointonline","displayName":"SharePoint","iconUri":"https://static.powerapps.com/resource/ppcr/releases/v1.0.1827/1.0.1827.4913/sharepointonline/icon.png","dataSources":["AP_INT","Int_Data","ApprWI_Questions"],"dependencies":[],"dependents":["e563ec63-6146-41d3-bf0b-ddf9d88b40dc"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{"https://uniparks.sharepoint.com/sites/Apprentice_Interview":{"dataSources":{"AP_INT":{"tableName":"43ab0dea-55b1-43ac-a83a-82a6a806733e"},"Int_Data":{"tableName":"82fd87f4-7090-47fc-a73e-cf83d0fd52d2"},"ApprWI_Questions":{"tableName":"c6222b40-4305-41f6-9d61-4d753d0bd3df"}}}},"apiTier":"Standard","actions":["providers/PowerPlatform.Governance/Operations/Read","providers/PowerPlatform.Governance/Operations/Write"]},"698f5eef-d70c-476b-a689-335d48f79b6f":{"id":"/providers/microsoft.powerapps/apis/shared_office365users","displayName":"Office 365 Users","iconUri":"https://static.powerapps.com/resource/ppcr/releases/v1.0.1818/1.0.1818.4788/office365users/icon.png","dataSources":["Office365Users"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["SearchUser","MyProfile"]},"e563ec63-6146-41d3-bf0b-ddf9d88b40dc":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://static.powerapps.com/resource/ppcr/releases/v1.0.1827/1.0.1827.4908/logicflows/icon.png","dataSources":["IntSessionPatch"],"dependencies":["d253a505-617e-4300-970d-783dd9ae415d"],"dependents":[],"parameterHints":{"workflowName":{"value":"096fc5cb-56c2-4700-a716-e0a07b1d6fac"},"workflowEntityId":{"value":"cefca3b3-d199-f111-b8db-6045bd0838d0"},"workflowDisplayName":{"value":"IntSessionPatch"},"d253a505-617e-4300-970d-783dd9ae415d":{"value":"shared_sharepointonline"}},"parameterHintsV2":{"workflowName":{"value":"096fc5cb-56c2-4700-a716-e0a07b1d6fac"},"workflowEntityId":{"value":"cefca3b3-d199-f111-b8db-6045bd0838d0"},"workflowDisplayName":{"value":"IntSessionPatch"},"shared_sharepointonline":{"value":"d253a505-617e-4300-970d-783dd9ae415d"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"c8fd9800-3e9f-46a0-8787-0c8d9919ba6c":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://static.powerapps.com/resource/ppcr/releases/v1.0.1827/1.0.1827.4908/logicflows/icon.png","dataSources":["Appr_PDF_Email"],"dependencies":["bdc83a57-e25f-481d-9416-574ba4367a40","2937851b-cfc4-4668-b57e-fc6d6bda2fad"],"dependents":[],"parameterHints":{"workflowName":{"value":"0cab8c42-c2c5-4c25-8643-c7c0dad0ae65"},"workflowEntityId":{"value":"a716cf7d-23a1-f111-b8dc-6045bd0838d0"},"workflowDisplayName":{"value":"Appr_PDF_Email"},"bdc83a57-e25f-481d-9416-574ba4367a40":{"value":"shared_office365_1"},"2937851b-cfc4-4668-b57e-fc6d6bda2fad":{"value":"shared_onedriveforbusiness"}},"parameterHintsV2":{"workflowName":{"value":"0cab8c42-c2c5-4c25-8643-c7c0dad0ae65"},"workflowEntityId":{"value":"a716cf7d-23a1-f111-b8dc-6045bd0838d0"},"workflowDisplayName":{"value":"Appr_PDF_Email"},"shared_office365_1":{"value":"bdc83a57-e25f-481d-9416-574ba4367a40"},"shared_onedriveforbusiness":{"value":"2937851b-cfc4-4668-b57e-fc6d6bda2fad"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"bdc83a57-e25f-481d-9416-574ba4367a40":{"id":"/providers/microsoft.powerapps/apis/shared_office365","displayName":"Office 365 Outlook","iconUri":"https://static.powerapps.com/resource/ppcr/releases/v1.0.1819/1.0.1819.4795/office365/icon.png","dataSources":[],"dependencies":[],"dependents":["c8fd9800-3e9f-46a0-8787-0c8d9919ba6c"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard"},"2937851b-cfc4-4668-b57e-fc6d6bda2fad":{"id":"/providers/microsoft.powerapps/apis/shared_onedriveforbusiness","displayName":"OneDrive for Business","iconUri":"https://static.powerapps.com/resource/ppcr/releases/v1.0.1827/1.0.1827.4902/onedriveforbusiness/icon.png","dataSources":[],"dependencies":[],"dependents":["c8fd9800-3e9f-46a0-8787-0c8d9919ba6c"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard"}}</ConnectionReferences>
+  <DatabaseReferences>{}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>0</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[{"dependencyid":"cefca3b3-d199-f111-b8db-6045bd0838d0","componenttype":29,"componenttypeplatformname":"Workflow"},{"dependencyid":"a716cf7d-23a1-f111-b8dc-6045bd0838d0","componenttype":29,"componenttypeplatformname":"Workflow"}]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <BackgroundImageUri>/CanvasApps/pqs_tsapprenticeinterview_1ff86_BackgroundImageUri</BackgroundImageUri>
+  <DocumentUri>/CanvasApps/pqs_tsapprenticeinterview_1ff86_DocumentUri.msapp</DocumentUri>
+  <AdditionalUris>
+    <AdditionalUri>/CanvasApps/pqs_tsapprenticeinterview_1ff86_AdditionalUris0_identity.json</AdditionalUri>
+  </AdditionalUris>
+</CanvasApp>
