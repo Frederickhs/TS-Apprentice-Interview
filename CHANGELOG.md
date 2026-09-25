@@ -307,9 +307,7 @@ CHANGELOG.md
 
 ---
 
-<details>
-
-<summary>Versioning Explanation</summary>
+### Versioning Explanation
 
 This repository uses **Semantic Versioning**:
 
@@ -351,5 +349,3 @@ Examples:
 - Text corrections
 - Documentation updates
 - Logic cleanup without behavior changes
-
-</details>
