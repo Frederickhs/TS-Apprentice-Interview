@@ -378,6 +378,107 @@ Generates PDF reports and distributes them through email.
 
 ---
 
+## Prerequisites
+
+Before configuring or updating the app, confirm you have:
+
+- Access to the Power Platform environment containing the
+  `TSApprenticeInterview` solution
+- Power Platform CLI (`pac`) installed and authenticated to that environment
+- Access to the SharePoint site and lists used by the app
+- Permission to edit and publish the app and its data connections
+- Access to configure and test the `IntSessionPatch` and `Appr_PDF_Email`
+  Power Automate flows
+
+Connection references, environment variables, SharePoint site URLs, and email
+recipients are environment-specific. This repository does not specify their
+production values; confirm them with the app owner before deployment.
+
+## Setup and Configuration
+
+1. Confirm the target Power Platform environment and SharePoint site.
+2. Verify that the `AP_INT`, `Int_Data`, and `ApprWI_Questions` lists exist and
+   that their columns match the app's expectations in this README and
+   [FORMULAS_REFERENCE.md](FORMULAS_REFERENCE.md).
+3. Review the `AP_INT` question bank for the supported `Cat` and `Sub` values,
+   and verify that it has enough questions for the intended interview
+   categories.
+4. Configure the app's SharePoint connections and the required flow connections
+   in the target environment.
+5. Confirm that `IntSessionPatch` can create a session and that
+   `Appr_PDF_Email` can generate and distribute the report to the intended
+   recipients.
+6. Test the full interview workflow, including question generation, scoring,
+   recommendations, PDF generation, and email delivery, before production use.
+
+Use the organization's Power Platform deployment process for importing or
+publishing the solution. Exact environment configuration and deployment steps
+are not included in this repository.
+
+## Data Protection
+
+The app uses SharePoint for question-bank data, interview sessions, and write-in
+questions, and sends completed reports through an email flow. Apply
+environment-appropriate SharePoint and flow permissions, especially because
+the `AP_INT` list contains expected answers and `Int_Data` stores apprentice
+and interviewer information.
+
+- Restrict question-bank access to people who need to maintain or administer it.
+- Grant access to interview records, write-ins, PDFs, and email outputs only to
+  authorized users.
+- Follow organizational retention and privacy requirements for interview and
+  apprentice data.
+- Do not put credentials, personal data, or confidential environment details in
+  source control or issue reports.
+
+## Deployment and Repository Update
+
+The **Development Workflow (GitHub)** section below contains the Power Platform
+CLI commands for exporting the unmanaged solution and unpacking the Canvas App
+source. Before using them, confirm `pac` is authenticated to the intended
+environment. Review the source diff and test the app and flows before release.
+
+The listed `git add`, `git commit`, and `git push` commands publish repository
+changes. Stage only the intended files and follow the team's review and release
+process; the commands are instructions and should only be run when a source
+update is intended.
+
+## Troubleshooting
+
+- **Questions or categories do not load:** Verify the `AP_INT` connection,
+  list access, and that question rows use supported `Cat` and `Sub` values.
+- **Interview sessions are not created or updated:** Check the app's connection
+  to `Int_Data` and confirm that `IntSessionPatch` is available and configured
+  for the target environment.
+- **Question count or refresh behavior is unexpected:** Review category
+  selection, available questions, and the distribution and refresh rules in
+  [FORMULAS_REFERENCE.md](FORMULAS_REFERENCE.md).
+- **Scoring or final result is unexpected:** Confirm that questions were
+  graded as Correct or Incorrect and review the 80% pass threshold described
+  above.
+- **PDF or email is missing:** Verify that `Appr_PDF_Email` is enabled and its
+  connections and intended recipients are configured. Check the flow's run
+  history for the reported failure.
+
+When reporting an issue, include the environment, workflow step, approximate
+time, and any displayed error. Do not include credentials or unnecessary
+personal information.
+
+## Ownership and Support
+
+This repository does not identify named app, Power Platform, SharePoint, or
+flow owners. Before deployment, confirm who is responsible for:
+
+- App and solution ownership
+- Question-bank and interview-record maintenance
+- Power Automate flow and email configuration
+- Production deployment approval and support
+
+Use the team's established support process and include relevant, non-sensitive
+error details when requesting help.
+
+---
+
 ## Solution Information
 
 ### Solution Name
